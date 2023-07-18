@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import InputField from './Form2';
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
@@ -30,93 +30,68 @@ const FormComponent = () => {
 
     return (
         <div className="bg-gradient-to-r from-blue-950 from-20% via-slate-600 via-40% to-blue-950 to-90% h-screen">
-
             <div className='md:flex justify-evenly h-full  '>
-            <div className='flex flex-col justify-center items-center md:w-4/12'>
+                <div className='flex flex-col justify-center items-center md:w-4/12'>
                     <div>
-
-                        <h1>fill your form</h1>
-                        <p>lhsalsfajdfajkdsgjkl</p>
+                        <h1 className='text-pink-400 font-bold text-8xl'>Here's Your first step with us!</h1>
                     </div>
                 </div>
                 <form className='md:w-4/12 flex flex-col justify-center' onSubmit={handleSubmit(onSubmit)}>
-                    <div className='md:flex justify-between gap-4 mb-2'>
-                        <div className="px-6 md:px-0 md:w-6/12">
-                            <input
-                            placeholder='Name'
-                                id="name"
-                                type="text"
-                                className={`  rounded-md p-2 w-full ${errors.name ? 'border-red-500' : 'border-none'
-                                    }`}
-                                {...register('name', { required: 'Name is required.' })}
-                            />
-                            {errors.name && <span className="text-red-500 text-xs">{errors.name.message}</span>}
-                        </div>
-                        <div className="px-6 md:px-0 md:w-6/12 ">
-                            <input
-                            placeholder='Mobile'
-                                id="mobile"
-                                type="text"
-                                className={`  rounded-md p-2 w-full ${errors.mobile ? 'border-red-500' :  'border-none'
-                                    }`}
-                                {...register('mobile', {
-                                    required: 'Mobile is required.',
-                                    pattern: {
-                                        value: /^[0-9+\-]+$/,
-                                        message: 'Mobile should contain only numbers, +, or -.',
-                                    },
-                                })}
-                            />
-                            {errors.mobile && <span className="text-red-500 text-xs">{errors.mobile.message}</span>}
-                        </div>
-
-
+                    <div className='md:flex justify-between gap-4'>
+                        <InputField
+                            placeholder="Name"
+                            id="name"
+                            type="text"
+                            errors={errors.name}
+                            register={register('name', { required: 'Name is required.' })}
+                        />
+                        <InputField
+                            placeholder="Mobile"
+                            id="mobile"
+                            type="text"
+                            errors={errors.mobile}
+                            register={register('mobile', {
+                                required: 'Mobile is required.',
+                                pattern: {
+                                    value: /^[0-9+\-]+$/,
+                                    message: 'Mobile should contain only numbers, +, or -.',
+                                },
+                            })}
+                        />
                     </div>
-                    <div className='md:flex justify-between gap-4 mb-2'>
-                        <div className="px-6 md:px-0 md:w-6/12">
-                            
-                            <input
-                            placeholder='Password'
-                                id="password"
-                                type="password"
-                                className={` rounded-md p-2 w-full ${errors.password ? 'border-red-500' :  'border-none'
-                                    }`}
-                                {...register('password', {
-                                    required: 'Password is required.',
-                                    pattern: {
-                                        value: /^(?=.*[@#$])(?=.*[0-9]{4})(?=.*[A-Z]{2})(?=.*[a-z]{2}).*$/,
-                                        message:
-                                            'Password should contain at least 1 special character (@#$), 4 numbers, 2 capital case letters, and 2 small case letters.',
-                                    },
-                                })}
-                            />
-                            {errors.password && <span className="text-red-500 text-xs">{errors.password.message}</span>}
-                        </div>
+                    <div className='md:flex justify-between gap-4 '>
+                        <InputField
+                            placeholder="Password"
+                            id="password"
+                            type="password"
+                            errors={errors.password}
+                            register={register('password', {
+                                required: 'Password is required.',
+                                pattern: {
+                                    value: /^(?=.*[@#$])(?=.*[0-9]{4})(?=.*[A-Z]{2})(?=.*[a-z]{2}).*$/,
+                                    message:
+                                        'Password should contain at least 1 special character (@#$), 4 numbers, 2 capital case letters, and 2 small case letters.',
+                                },
+                            })}
+                        />
 
-                        <div className="px-6 md:px-0 md:w-6/12">
-                            
-                            <input
-                            placeholder='Reenter Password'
-                                id="reenterPassword"
-                                type="password"
-                                className={` rounded-md p-2 w-full ${errors.reenterPassword ? 'border-red-500' : 'border-none'
-                                    }`}
-                                {...register('reenterPassword', {
-                                    required: 'Re-enter Password is required.',
-                                    validate: (value) => value === watch('password') || 'Passwords do not match.',
-                                })}
-                            />
-                            {errors.reenterPassword && (
-                                <span className="text-red-500 text-xs">{errors.reenterPassword.message}</span>
-                            )}
-                        </div>
+                        <InputField
+                            placeholder="ReEnter Password"
+                            id="reenterPassword"
+                            type="password"
+                            errors={errors.reenterPassword}
+                            register={register('reenterPassword', {
+                                required: 'Re-enter Password is required.',
+                                validate: (value) => value === watch('password') || 'Passwords do not match.',
+                            })}
+                        />
                     </div>
-                    <div className="px-6 md:px-0 mb-2">
+                    <div className={`px-6 md:px-0 ${errors.email ? 'mb-0' : 'mb-5'}`}>
                         <input
-                        placeholder='Email'
+                            placeholder='Email'
                             id="email"
                             type="text"
-                            className={` rounded-md p-2 w-full ${errors.email ? 'border-red-500' :  'border-none'
+                            className={` rounded-md p-2 w-full ${errors.email ? 'border-red-500' : 'border-none'
                                 }`}
                             {...register('email', {
                                 required: 'Email is required.',
@@ -128,9 +103,7 @@ const FormComponent = () => {
                         />
                         {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
                     </div>
-
-
-                    <div className="px-6 md:px-0 mb-2 ">
+                    <div className="px-6 md:px-0 mb-5 ">
                         <label className='text-sm  text-white'>Select Field</label>
                         <Select
                             value={selectedOption}
@@ -142,14 +115,12 @@ const FormComponent = () => {
                         />
                         {errors.selectField && <span>This field is required</span>}
                     </div>
-
-
-                    <div className="px-6 md:px-0 mb-2">
+                    <div className="px-6 md:px-0 mb-5">
                         <label className="block text-sm  text-white">Favorites</label>
                         <div className='flex gap-3'>
 
                             <label className="block  text-white">
-                                <input 
+                                <input
                                     type="radio"
                                     className="mr-2"
                                     value="Frontend"
@@ -180,8 +151,8 @@ const FormComponent = () => {
                     </div>
 
 
-                    <div className="">
-                        <label className={`block text-white ${errors.checkboxField&&'text-red-700'}` }>
+                    <div className=" mb-2">
+                        <label className={`block text-white ${errors.checkboxField && 'text-red-700'}`}>
                             <input
                                 type="checkbox"
                                 className="mr-2"
@@ -189,7 +160,6 @@ const FormComponent = () => {
                             />
                             Terms & Conditions Accepted
                         </label>
-                        {/* {errors.checkboxField && <span className="text-red-500 text-xs">{errors.checkboxField.message}</span>} */}
                     </div>
 
                     <div className='flex justify-center px-20'>
@@ -201,7 +171,7 @@ const FormComponent = () => {
                         </button>
                     </div>
                 </form>
-                
+
             </div>
 
         </div>
