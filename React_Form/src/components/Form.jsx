@@ -43,8 +43,12 @@ const FormComponent = () => {
                         <h1 className='text-pink-400 font-bold text-5xl md:text-7xl lg:text-8xl'>Here's Your first step with us!</h1>
                     </div>
                 </div>
+
+
                 <form className='md:w-4/12 flex flex-col justify-center px-6 md:px-0' onSubmit={handleSubmit(onSubmit)}>
+                   
                     <div className='md:flex justify-between gap-4'>
+
                         <InputField
                             placeholder="Name"
                             id="name"
@@ -52,6 +56,7 @@ const FormComponent = () => {
                             errors={errors.name}
                             register={register('name', { required: 'Name is required.' })}
                         />
+
                         <InputField
                             placeholder="Mobile"
                             id="mobile"
@@ -66,7 +71,10 @@ const FormComponent = () => {
                             })}
                         />
                     </div>
+
+
                     <div className='md:flex justify-between gap-4 '>
+
                         <InputField
                             placeholder="Password"
                             id="password"
@@ -81,6 +89,7 @@ const FormComponent = () => {
                                 },
                             })}
                         />
+
                         <InputField
                             placeholder="ReEnter Password"
                             id="reenterPassword"
@@ -92,6 +101,8 @@ const FormComponent = () => {
                             })}
                         />
                     </div>
+
+
                     <div className={`px-6 md:px-0 ${errors ? 'mb-2' : 'mb-5'}`}>
                         <input
                             placeholder='Email'
@@ -109,6 +120,8 @@ const FormComponent = () => {
                         />
                         {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
                     </div>
+
+
                     <div className={`px-6 md:px-0 ${errors.selectField ? 'mb-2' : 'mb-5'}`}>
                         <label className='text-sm  text-white'>Select Your Skills</label>
                         <Select
@@ -121,6 +134,8 @@ const FormComponent = () => {
                         />
                         {errors.selectField && <span>This field is required</span>}
                     </div>
+
+
                     <RadioButtonGroup
                         label="Most Favorites"
                         options={[
@@ -132,6 +147,8 @@ const FormComponent = () => {
                         register={register}
                         errors={errors.radioField}
                     />
+
+
                     <div className="px-6 md:px-0 mb-2">
                         <label className={`block text-sm text-white ${errors.checkboxField && 'text-red-600'}`}>
                             <input
