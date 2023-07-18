@@ -103,7 +103,7 @@ const FormComponent = () => {
                     </div>
 
 
-                    <div className={`px-6 md:px-0 ${errors ? 'mb-2' : 'mb-5'}`}>
+                    <div className={`px-6 md:px-0 ${errors.email ? 'mb-0' : 'mb-3'}`}>
                         <input
                             placeholder='Email'
                             id="email"
@@ -122,8 +122,8 @@ const FormComponent = () => {
                     </div>
 
 
-                    <div className={`px-6 md:px-0 ${errors.selectField ? 'mb-2' : 'mb-5'}`}>
-                        <label className='text-sm  text-white'>Select Your Skills</label>
+                    <div className={`px-6 md:px-0 ${errors.selectField ? 'mb-0' : 'mb-3'}`}>
+                        <label className='text-sm mb-1 text-white'>Select Your Skills</label>
                         <Select
                             value={selectedOption}
                             onChange={handleSelectChange}
