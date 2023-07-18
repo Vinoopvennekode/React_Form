@@ -41,7 +41,7 @@ const FormComponent = () => {
                         <h1 className='text-pink-400 font-bold text-5xl md:text-7xl lg:text-8xl'>Here's Your first step with us!</h1>
                     </div>
                 </div>
-                <form className='md:w-4/12 flex flex-col justify-center px-10 md:px-0' onSubmit={handleSubmit(onSubmit)}>
+                <form className='md:w-4/12 flex flex-col justify-center px-6 md:px-0' onSubmit={handleSubmit(onSubmit)}>
                     <div className='md:flex justify-between gap-4'>
                         <InputField
                             placeholder="Name"
