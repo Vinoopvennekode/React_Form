@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import InputField from './InputComponent';
+import InputField from './InputComponent'; //For reusing the components of inputfield and radio buttongroup
 import RadioButtonGroup from './RadioButtonGroup'
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
@@ -8,6 +8,7 @@ import makeAnimated from 'react-select/animated';
 
 const FormComponent = () => {
     const [selectedOption, setSelectedOption] = useState([]);
+    const animatedComponents = makeAnimated()
 
     const options = [
         { value: 'Javascript', label: 'Javascript' },
@@ -17,15 +18,15 @@ const FormComponent = () => {
         { value: 'Kotlin', label: 'Kotlin' },
     ];
 
-    const animatedComponents = makeAnimated()
     const {
         register,
         handleSubmit,
         formState: { errors }, watch, setValue,
     } = useForm();
 
+
     const onSubmit = (data) => {
-        console.log(data);
+        console.log(data); // data will appear in the console
     };
 
     const handleSelectChange = (selectedOption) => {
@@ -34,10 +35,11 @@ const FormComponent = () => {
     };
 
     return (
+        <>
         <div className="bg-gradient-to-r from-blue-950 from-20% via-slate-600 via-40% to-blue-950 to-90% h-screen ">
-            <div className='md:flex justify-evenly h-full  '>
+            <div className='md:flex justify-evenly h-full'>
                 <div className='flex flex-col justify-center items-center md:w-4/12'>
-                    <div className='p-10 md:p-6'>
+                    <div className='p-10 md:p-4'>
                         <h1 className='text-pink-400 font-bold text-5xl md:text-7xl lg:text-8xl'>Here's Your first step with us!</h1>
                     </div>
                 </div>
@@ -134,10 +136,10 @@ const FormComponent = () => {
                         <label className={`block text-sm text-white ${errors.checkboxField && 'text-red-600'}`}>
                             <input
                                 type="checkbox"
-                                className="mr-2"
+                                className="mr-2 accent-pink-500"
                                 {...register('checkboxField', { required: 'You must select this.' })}
                             />
-                            Terms & Conditions Accepted
+                            I agree to the <span className='text-pink-600'>terms & conditions</span>
                         </label>
                     </div>
 
@@ -154,6 +156,7 @@ const FormComponent = () => {
             </div>
 
         </div>
+        </>
     );
 };
 
