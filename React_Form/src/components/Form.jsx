@@ -37,11 +37,11 @@ const FormComponent = () => {
         <div className="bg-gradient-to-r from-blue-950 from-20% via-slate-600 via-40% to-blue-950 to-90% h-screen ">
             <div className='md:flex justify-evenly h-full  '>
                 <div className='flex flex-col justify-center items-center md:w-4/12'>
-                    <div className='p-6'>
+                    <div className='p-10 md:p-6'>
                         <h1 className='text-pink-400 font-bold text-5xl md:text-7xl lg:text-8xl'>Here's Your first step with us!</h1>
                     </div>
                 </div>
-                <form className='md:w-4/12 flex flex-col justify-center' onSubmit={handleSubmit(onSubmit)}>
+                <form className='md:w-4/12 flex flex-col justify-center px-10 md:px-0' onSubmit={handleSubmit(onSubmit)}>
                     <div className='md:flex justify-between gap-4'>
                         <InputField
                             placeholder="Name"
