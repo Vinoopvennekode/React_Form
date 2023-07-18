@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
-import InputField from './Form2';
+import InputField from './InputComponent';
+import RadioButtonGroup from './RadioButtonGroup'
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
 import makeAnimated from 'react-select/animated';
-const animatedComponents = makeAnimated()
 
 
 const FormComponent = () => {
     const [selectedOption, setSelectedOption] = useState([]);
+
     const options = [
-        { value: 'option1', label: 'Option 1' },
-        { value: 'option2', label: 'Option 2' },
-        { value: 'option3', label: 'Option 3' },
+        { value: 'Javascript', label: 'Javascript' },
+        { value: 'Python', label: 'Python' },
+        { value: 'Java', label: 'Java' },
+        { value: 'PHP', label: 'PHP' },
+        { value: 'Kotlin', label: 'Kotlin' },
     ];
+
+    const animatedComponents = makeAnimated()
     const {
         register,
         handleSubmit,
@@ -24,16 +29,16 @@ const FormComponent = () => {
     };
 
     const handleSelectChange = (selectedOption) => {
-        setSelectedOption(selectedOption);
+        setSelectedOption(selectedOption.value);
         setValue('selectField', selectedOption); // Update the form state manually
     };
 
     return (
-        <div className="bg-gradient-to-r from-blue-950 from-20% via-slate-600 via-40% to-blue-950 to-90% h-screen">
+        <div className="bg-gradient-to-r from-blue-950 from-20% via-slate-600 via-40% to-blue-950 to-90% h-screen ">
             <div className='md:flex justify-evenly h-full  '>
                 <div className='flex flex-col justify-center items-center md:w-4/12'>
-                    <div>
-                        <h1 className='text-pink-400 font-bold text-8xl'>Here's Your first step with us!</h1>
+                    <div className='p-6'>
+                        <h1 className='text-pink-400 font-bold text-5xl md:text-7xl lg:text-8xl'>Here's Your first step with us!</h1>
                     </div>
                 </div>
                 <form className='md:w-4/12 flex flex-col justify-center' onSubmit={handleSubmit(onSubmit)}>
@@ -70,11 +75,10 @@ const FormComponent = () => {
                                 pattern: {
                                     value: /^(?=.*[@#$])(?=.*[0-9]{4})(?=.*[A-Z]{2})(?=.*[a-z]{2}).*$/,
                                     message:
-                                        'Password should contain at least 1 special character (@#$), 4 numbers, 2 capital case letters, and 2 small case letters.',
+                                        'Password should contain at least 1 special character, 4 numbers, 2 capital case letters, and 2 small case letters.',
                                 },
                             })}
                         />
-
                         <InputField
                             placeholder="ReEnter Password"
                             id="reenterPassword"
@@ -86,7 +90,7 @@ const FormComponent = () => {
                             })}
                         />
                     </div>
-                    <div className={`px-6 md:px-0 ${errors.email ? 'mb-0' : 'mb-5'}`}>
+                    <div className={`px-6 md:px-0 ${errors ? 'mb-1' : 'mb-5'}`}>
                         <input
                             placeholder='Email'
                             id="email"
@@ -103,8 +107,8 @@ const FormComponent = () => {
                         />
                         {errors.email && <span className="text-red-500 text-xs">{errors.email.message}</span>}
                     </div>
-                    <div className="px-6 md:px-0 mb-5 ">
-                        <label className='text-sm  text-white'>Select Field</label>
+                    <div className={`px-6 md:px-0 ${errors ? 'mb-2' : 'mb-5'}`}>
+                        <label className='text-sm  text-white'>Select Your Skills</label>
                         <Select
                             value={selectedOption}
                             onChange={handleSelectChange}
@@ -115,44 +119,19 @@ const FormComponent = () => {
                         />
                         {errors.selectField && <span>This field is required</span>}
                     </div>
-                    <div className="px-6 md:px-0 mb-5">
-                        <label className="block text-sm  text-white">Favorites</label>
-                        <div className='flex gap-3'>
-
-                            <label className="block  text-white">
-                                <input
-                                    type="radio"
-                                    className="mr-2"
-                                    value="Frontend"
-                                    {...register('radioField', { required: 'Select an option.' })}
-                                />
-                                Frontend
-                            </label>
-                            <label className="block  text-white">
-                                <input
-                                    type="radio"
-                                    className="mr-2"
-                                    value="Backend"
-                                    {...register('radioField', { required: 'Select an option.' })}
-                                />
-                                Backend
-                            </label>
-                            <label className="block  text-white">
-                                <input
-                                    type="radio"
-                                    className="mr-2"
-                                    value="Full Stack"
-                                    {...register('radioField', { required: 'Select an option.' })}
-                                />
-                                Full Stack
-                            </label>
-                        </div>
-                        {errors.radioField && <span className="text-red-500 text-xs">{errors.radioField.message}</span>}
-                    </div>
-
-
-                    <div className=" mb-2">
-                        <label className={`block text-white ${errors.checkboxField && 'text-red-700'}`}>
+                    <RadioButtonGroup
+                        label="Most Favorites"
+                        options={[
+                            { value: 'Frontend', label: 'Frontend' },
+                            { value: 'Backend', label: 'Backend' },
+                            { value: 'Full Stack', label: 'Full Stack' },
+                        ]}
+                        name="radioField"
+                        register={register}
+                        errors={errors.radioField}
+                    />
+                    <div className="px-6 md:px-0 mb-2">
+                        <label className={`block text-sm text-white ${errors.checkboxField && 'text-red-600'}`}>
                             <input
                                 type="checkbox"
                                 className="mr-2"
