@@ -8,7 +8,7 @@ const RadioButtonGroup = ({ label, options, name, register, errors }) => {
             <label key={option.value} className="block text-white">
               <input
                 type="radio"
-                className="mr-2"
+                className="mr-2 accent-pink-500"
                 value={option.value}
                 {...register(name, { required: 'Select an option.' })}
               />

@@ -150,7 +150,7 @@ const FormComponent = () => {
 
 
                     <div className="px-6 md:px-0 mb-2">
-                        <label className={`block text-sm text-white ${errors.checkboxField && 'text-red-600'}`}>
+                        <label className={`block text-sm text-white`}>
                             <input
                                 type="checkbox"
                                 className="mr-2 accent-pink-500"
