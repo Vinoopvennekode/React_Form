@@ -60,7 +60,7 @@ const FormComponent = () => {
                         <InputField
                             placeholder="Mobile"
                             id="mobile"
-                            type="text"
+                            type="number"
                             errors={errors.mobile}
                             register={register('mobile', {
                                 required: 'Mobile is required.',
