@@ -156,22 +156,20 @@ const FormComponent = () => {
                                 className="mr-2 accent-pink-500"
                                 {...register('checkboxField', { required: 'You must select this.' })}
                             />
-                            I agree to the <span className='text-pink-600'>terms & conditions</span>
+                            I agree to the <span className='text-pink-500'>terms & conditions</span>
                         </label>
                     </div>
 
                     <div className='flex justify-center px-20'>
                         <button
                             type="submit"
-                            className=" bg-pink-400 hover:bg-pink-600 text-white font-semibold py-2 px-4 rounded w-full "
+                            className=" bg-pink-400 hover:bg-pink-500 text-white font-semibold py-2 px-4 rounded w-full "
                         >
                             Submit
                         </button>
                     </div>
                 </form>
-
             </div>
-
         </div>
         </>
     );
